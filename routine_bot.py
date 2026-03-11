@@ -1,10 +1,13 @@
 import asyncio
 from datetime import datetime
 from telegram import Bot
+import pytz
 
 TOKEN = "8397526678:AAFbtA3_Q1jOKCclzuVw0bLq04m92-j-33w"
 
 bot = Bot(token=TOKEN)
+
+KST = pytz.timezone('Asia/Seoul')
 
 isSend = False
 lastSendTime = ""
@@ -27,7 +30,7 @@ routines = [running, English1, coding, English2, Reading, Excercise]
 async def main ():
        while True:
         global isSend, lastSendTime
-        nowTime = datetime.now().strftime("%H:%M")
+        nowTime = datetime.now(KST).strftime("%H:%M")
 
         if nowTime != lastSendTime:
             isSend = False
